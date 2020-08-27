@@ -1,0 +1,5 @@
+user_time = int(input('Введите время в секундах: '))
+hh = user_time // 3600
+mm = (user_time % 3600) // 60
+cc = (user_time % 3600) % 60
+print(f'{hh}:{mm}:{cc}')

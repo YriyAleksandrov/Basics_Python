@@ -1,0 +1,10 @@
+user_number = int(input('Введите целое число состоящее из нескольких цифр: '))
+number_max = 0
+while user_number != 0:
+    number = user_number % 10
+    user_number //= 10
+    if number > number_max:
+        number_max = number
+    elif number_max == 9:
+        break
+print(number_max)
