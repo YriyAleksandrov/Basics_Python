@@ -1,0 +1,18 @@
+say = True
+num = 1
+structure, name, price, quantity, unit = [], [], [], [], []
+while say:
+    user_dict = {'название': input('Введите название товара: '), 'цена': int(input('Введите цену: ')),
+                 'количество': int(input('Введите количество: ')), 'ед': input('Введите единицу измерения: ')}
+    add_data = (num, user_dict)
+    structure.append(add_data)
+    num += 1
+    say = input('Вы хотите добавить товар? (да/нет): ')
+    say = True if say == 'да' else False
+for num, item_dict in structure:
+    name.append(item_dict['название'])
+    price.append(item_dict['цена'])
+    quantity.append(item_dict['количество'])
+    unit.append(item_dict['ед'])
+item_dict = {'название': name, 'цена': price, 'количество': quantity, 'ед': unit}
+print(item_dict)
