@@ -1,0 +1,11 @@
+user_list = input('Введите элементы через пробел: ').split()
+my_list = []
+i = 0
+while i < len(user_list):
+    if i == (len(user_list) - 1):
+        my_list.append(user_list[i])
+        break
+    my_list.append(user_list[i + 1])
+    my_list.append(user_list[i])
+    i += 2
+print(my_list)
