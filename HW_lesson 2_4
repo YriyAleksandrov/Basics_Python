@@ -1,0 +1,3 @@
+user_text = input('Введите слова разделяя их пробелами: ').split()
+for ind, el in enumerate(user_text, 1):
+    print(ind, el[:10])
