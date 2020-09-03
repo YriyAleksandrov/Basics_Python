@@ -1,0 +1,6 @@
+def func_info(name, surname, year, city, email, phone):
+    print(f'имя:{name}, фамилия:{surname}, год рождения:{year}, город проживания:{city}, email:{email}, телфон:{phone}')
+
+
+func_info(name=input('Ведите имя: '), surname=input('Ведите фамилию: '), year=int(input('Ведите год рождения: ')),
+          city=input('Ведите город проживания: '), email=input('Ведите email: '), phone=input('Ведите телефон: '))
