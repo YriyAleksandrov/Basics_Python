@@ -1,0 +1,13 @@
+def my_func(x, y, z):
+    if (x > y) and (z > y):
+        return print(f'Сумма наибольших двух аргументов: {(x + z):.2f}')
+    elif (y > x) and (z > x):
+        return print(f'Сумма наибольших двух аргументов: {(y + z):.2f}')
+    else:
+        return print(f'Сумма наибольших двух аргументов: {(x + y):.2f}')
+
+
+arg_1 = float(input('Ввод первого аргумента: '))
+arg_2 = float(input('Ввод второго аргумента: '))
+arg_3 = float(input('Ввод третьего аргумента: '))
+my_func(arg_1, arg_2, arg_3)

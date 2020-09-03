@@ -1,0 +1,7 @@
+def my_func(num, level):
+    return num ** level
+
+
+x = float(input('Введите действительное положительное число: '))
+y = int(input('Введите целое отрицательное число: '))
+print(my_func(x, y))

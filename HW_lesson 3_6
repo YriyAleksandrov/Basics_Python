@@ -1,0 +1,6 @@
+def int_func(text_1):
+    return text_1.title()
+
+
+text = input('Введите текст: ')
+print(int_func(text))

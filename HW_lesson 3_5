@@ -1,0 +1,20 @@
+def my_func(numbers):
+    num = 0
+    for i in numbers:
+        num += float(i)
+    return num
+
+
+print('Вводите числа через пробел, если захотите узнать их сумму нажмите Enter, для выхода введите Esc.')
+summa = 0
+while True:
+    user_numbers = input('Ввод: ').split()
+    if 'Esc' in user_numbers:
+        user_numbers.pop()
+        summa += my_func(user_numbers)
+        print(summa)
+        break
+    else:
+        summa += my_func(user_numbers)
+        print(summa)
+        continue
