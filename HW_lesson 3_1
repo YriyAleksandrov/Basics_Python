@@ -1,0 +1,9 @@
+def my_func(x, y):
+    return x / y
+
+
+numerator = float(input('Введите числитель: '))
+denominator = float(input('Введите знаменатель: '))
+while denominator == 0:
+    denominator = float(input('Делить на ноль нельзя! Введите любое значение кроме ноля: '))
+print(my_func(numerator, denominator))
