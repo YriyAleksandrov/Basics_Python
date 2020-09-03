@@ -1,0 +1,10 @@
+def my_func(num, level):
+    extent = x
+    for i in range(abs(level)-1):
+        extent *= num
+    return 1 / extent
+
+
+x = float(input('Введите действительное положительное число: '))
+y = int(input('Введите целое отрицательное число: '))
+print(my_func(x, y))
