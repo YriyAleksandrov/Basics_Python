@@ -1,0 +1,2 @@
+def wages(par_1, par_2, par_3):
+    return par_1 * par_2 + par_3
