@@ -1,0 +1,11 @@
+"""
+Реализовать скрипт, в котором должна быть предусмотрена функция расчета заработной
+платы сотрудника. В расчете необходимо использовать формулу: (выработка в часах*ставка в
+час) + премия. Для выполнения расчета для конкретных значений необходимо запускать
+скрипт с параметрами.
+"""
+from sys import argv
+from HW_lesson_4_1_module import wages
+
+name, clock_work, rate, prize = argv
+print(f"The employee's salary is: {wages(par_1=int(clock_work), par_2=int(rate), par_3=int(prize))}")
