@@ -1,0 +1,12 @@
+"""
+Создать программно файл в текстовом формате, записать в него построчно данные,
+вводимые пользователем. Об окончании ввода данных свидетельствует пустая строка
+"""
+with open('user_text_5_1.txt', 'wt+', encoding='utf-8') as f:
+    while True:
+        user_text = input('Введите данные для продолжения: ') + '\n'
+        f.write(user_text)
+        if user_text == '\n':
+            break
+    f.seek(0)
+    print(f.readlines())

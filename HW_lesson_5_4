@@ -1,0 +1,27 @@
+"""
+Создать (не программно) текстовый файл со следующим содержимым:
+One — 1
+Two — 2
+Three — 3
+Four — 4
+Необходимо написать программу, открывающую файл на чтение и считывающую построчно
+данные. При этом английские числительные должны заменяться на русские. Новый блок строк
+должен записываться в новый текстовый файл.
+"""
+
+
+def rewrite(for_what):
+    with open('user_text_5_4_ru.txt', 'at+', encoding='utf-8') as s:
+        return s.write(for_what)
+
+
+with open('user_text_5_4_en.txt', 'rt', encoding='utf-8') as f:
+    for i in f:
+        if i == 'One — 1\n':
+            rewrite('Один — 1\n')
+        elif i == 'Two — 2\n':
+            rewrite('Два — 2\n')
+        elif i == 'Three — 3\n':
+            rewrite('Три — 3\n')
+        elif i == 'Four — 4':
+            rewrite('Четыре — 4')

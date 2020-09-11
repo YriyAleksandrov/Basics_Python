@@ -1,0 +1,9 @@
+"""
+Создать текстовый файл (не программно), сохранить в нем несколько строк, выполнить
+подсчет количества строк, количества слов в каждой строке.
+"""
+with open('user_text_5_2.txt', 'rt', encoding='utf-8') as f:
+    for num, line in enumerate(f, 1):
+        array = line.split()
+        print(f'Слов в строке {num}: {len(array)}')
+    print(f'Количество строк: {num}')
