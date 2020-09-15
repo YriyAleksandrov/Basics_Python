@@ -1,0 +1,96 @@
+"""
+Реализуйте базовый класс Car. У данного класса должны быть следующие атрибуты: speed,
+color, name, is_police (булево). А также методы: go, stop, turn(direction), которые должны
+сообщать, что машина поехала, остановилась, повернула (куда). Опишите несколько
+дочерних классов: TownCar, SportCar, WorkCar, PoliceCar. Добавьте в базовый класс метод
+show_speed, который должен показывать текущую скорость автомобиля. Для классов
+TownCar и WorkCar переопределите метод show_speed. При значении скорости свыше 60
+(TownCar) и 40 (WorkCar) должно выводиться сообщение о превышении скорости.
+Создайте экземпляры классов, передайте значения атрибутов. Выполните доступ к
+атрибутам, выведите результат. Выполните вызов методов и также покажите результат
+"""
+
+
+class Car:
+    def __init__(self, speed, color, name):
+        self.speed = speed
+        self.color = color
+        self.name = name
+        self.go()
+        self.show_speed()
+        self.turn(direction="направо")
+        self.stop()
+
+    def go(self):
+        print(f'{self.name} {self.color} цвета движется,', end="\t")
+
+    def stop(self):
+        print('и остановилась.')
+
+    def turn(self, direction):
+        print(f'повернула {direction}', end="\t")
+
+    def show_speed(self):
+        print(f'скорость {self.speed} км/ч,', end="\t")
+
+
+class TownCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        super().__init__(speed, color, name)
+        self.is_police = is_police
+        if self.is_police:
+            print('Полицейская машина')
+
+    def show_speed(self):
+        if self.speed > 60:
+            print('внимание! Превышение скорости!', end="\t")
+        else:
+            print(f'скорость {self.speed} км/ч,', end="\t")
+
+
+class SportCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        super().__init__(speed, color, name)
+        self.is_police = is_police
+        if self.is_police:
+            print('Полицейская машина')
+
+    def sport_car(self):
+        print(f'Скорость движения: {self.show_speed}, цвет машины {self.color}')
+
+
+class WorkCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        super().__init__(speed, color, name)
+        self.is_police = is_police
+        if self.is_police:
+            print('Полицейская машина')
+
+    def show_speed(self):
+        if self.speed > 40:
+            print('Превышение скорости!', end="\t")
+        else:
+            print(f'скорость {self.speed} км/ч,', end="\t")
+
+
+class PoliceCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        super().__init__(speed, color, name)
+        self.is_police = is_police
+        if self.is_police:
+            print('Полицейская машина')
+        self.police_car()
+
+    def police_car(self):
+        print(f'Выписывает штрафы и делает предупреждения')
+
+
+# my_car = Car(398, 'серого', 'Bugatti')
+# town_car = TownCar(61, 'зеленого', 'Лада', False)
+# town_car.turn('налево')
+# sport_car = SportCar(250, 'желтого', 'Ока', False)
+# sport_car.go()
+# work_car = WorkCar(40, 'черного', 'BMW', True)
+# work_car.show_speed()
+police_car = PoliceCar(201, 'голубого', 'Volvo', True)
+police_car.police_car()
