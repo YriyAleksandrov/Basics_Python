@@ -1,0 +1,149 @@
+"""
+== Лото ==
+
+Правила игры в лото.
+
+Игра ведется с помощью специальных карточек, на которых отмечены числа,
+и фишек (бочонков) с цифрами.
+
+Количество бочонков — 90 штук (с цифрами от 1 до 90).
+
+Каждая карточка содержит 3 строки по 9 клеток. В каждой строке по 5 случайных цифр,
+расположенных по возрастанию. Все цифры в карточке уникальны. Пример карточки:
+
+--------------------------
+    9 43 62          74 90
+ 2    27    75 78    82
+   41 56 63     76      86
+--------------------------
+
+В игре 2 игрока: пользователь и компьютер. Каждому в начале выдается
+случайная карточка.
+
+Каждый ход выбирается один случайный бочонок и выводится на экран.
+Также выводятся карточка игрока и карточка компьютера.
+
+Пользователю предлагается зачеркнуть цифру на карточке или продолжить.
+Если игрок выбрал "зачеркнуть":
+    Если цифра есть на карточке - она зачеркивается и игра продолжается.
+    Если цифры на карточке нет - игрок проигрывает и игра завершается.
+Если игрок выбрал "продолжить":
+    Если цифра есть на карточке - игрок проигрывает и игра завершается.
+    Если цифры на карточке нет - игра продолжается.
+
+Побеждает тот, кто первый закроет все числа на своей карточке.
+
+Пример одного хода:
+
+Новый бочонок: 70 (осталось 76)
+------ Ваша карточка -----
+ 6  7          49    57 58
+   14 26     -    78    85
+23 33    38    48    71
+--------------------------
+-- Карточка компьютера ---
+ 7 87     - 14    11
+      16 49    55 88    77
+   15 20     -       76  -
+--------------------------
+Зачеркнуть цифру? (y/n)
+
+Подсказка: каждый следующий случайный бочонок из мешка удобно получать
+с помощью функции-генератора.
+
+Подсказка: для работы с псевдослучайными числами удобно использовать
+модуль random: http://docs.python.org/3/library/random.html
+"""
+import random
+
+
+class Card:
+    def __init__(self, name):
+        self.name = name
+
+    @property
+    def list_barrel(self):
+        barrel_list = []
+        while len(barrel_list) < 90:
+            barrel_list.append(random.randint(1, 90))
+            while barrel_list.count(barrel_list[-1]) > 1:
+                del barrel_list[-1]
+                barrel_list.append(random.randint(1, 90))
+        return barrel_list
+
+    def game_card(self):
+        card_game = self.list_barrel[0:15]
+        return card_game
+
+
+class Game(Card):
+    def __init__(self, human_card, computer_card):
+        super().__init__(self)
+        self.human = human_card
+        self.computer = computer_card
+
+    def print_card(self):
+        line_0 = self.game_card()
+        line_1 = line_0[:5]
+        line_1.sort()
+        line_2 = line_0[5:10]
+        line_2.sort()
+        line_3 = line_0[10:16]
+        line_3.sort()
+        num, card_array = 0, []
+        while num < 4:
+            line_1.insert(random.randrange(0, 5), ' ')
+            num += 1
+        num = 0
+        while num < 4:
+            line_2.insert(random.randrange(0, 5), ' ')
+            num += 1
+        num = 0
+        while num < 4:
+            line_3.insert(random.randrange(0, 5), ' ')
+            num += 1
+        human = line_1 + line_2 + line_3
+        return human
+
+    def start(self):
+        human = self.print_card()
+        computer = self.print_card()
+        list_barrel = self.list_barrel
+        error = 0
+        while len(list_barrel) != 0:
+            print(' ------ Ваша карточка -----', '\n', *human[:9], '\n', *human[9:18], '\n', *human[18:28], '\n',
+                  '--------------------------')
+            print(' -- Карточка компьютера ---', '\n', *computer[:9], '\n', *computer[9:18], '\n', *computer[18:28],
+                  '\n', '--------------------------')
+            barrel = list_barrel.pop()
+            print(f'Новый бочонок: {barrel} (осталось {len(list_barrel)})')
+            if barrel in computer:
+                num = computer.index(barrel)
+                computer.remove(barrel)
+                computer.insert(num, '-')
+            user_answer = input('Зачеркнуть цифру? y/n: ')
+            if user_answer == 'y' and barrel in human:
+                num = human.index(barrel)
+                human.remove(barrel)
+                human.insert(num, '-')
+                continue
+            elif user_answer == 'y' and barrel not in human:
+                error += 1
+                print(f'Не нажимай "y" просто так, а то запишу поражение!)')
+                if error == 3:
+                    print('Хитрить не честно, ты проиграл!')
+                    break
+            elif human.count('-') == 15:
+                print('Поздравляю, ты победил!!!')
+                break
+            elif computer.count('-') == 15:
+                print('Увы, ты проиграл!')
+                break
+            else:
+                continue
+
+
+human_player = Card('Игрок')
+computer_player = Card('Компьютер')
+game = Game(human_player, computer_player)
+game.start()
